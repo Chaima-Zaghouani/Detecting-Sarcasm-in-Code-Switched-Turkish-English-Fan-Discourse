@@ -1,0 +1,74 @@
+<View>
+  <Header value="Turkish–English Sarcasm Annotation"/>
+
+  <View style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px;">
+    <Header value="Parent Comment"/>
+    <Text name="parent_comment" value="$parent_comment"/>
+  </View>
+
+  <View style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px;">
+    <Header value="Reply"/>
+    <Text name="reply" value="$reply"/>
+  </View>
+
+  <Header value="How should this reply be classified?"/>
+
+  <Choices
+    name="sarcasm_label"
+    toName="reply"
+    choice="single"
+    required="true"
+    requiredMessage="Please select a sarcasm label.">
+
+    <Choice value="Sarcastic"/>
+    <Choice value="Non-sarcastic"/>
+    <Choice value="Ambiguous / Uncertain"/>
+
+  </Choices>
+
+  <View
+    visibleWhen="choice-selected"
+    whenTagName="sarcasm_label"
+    whenChoiceValue="Ambiguous / Uncertain">
+
+    <Header value="Why is the reply ambiguous or uncertain?"/>
+
+    <Choices
+      name="ambiguity_reason"
+      toName="reply"
+      choice="single"
+      required="true"
+      requiredMessage="Please select the main reason for uncertainty.">
+
+      <Choice value="Insufficient conversational context"/>
+      <Choice value="Drama/character context needed"/>
+      <Choice value="Language/expression unclear"/>
+      <Choice value="Tone genuinely ambiguous"/>
+      <Choice value="Other"/>
+
+    </Choices>
+
+    <View
+      visibleWhen="choice-selected"
+      whenTagName="ambiguity_reason"
+      whenChoiceValue="Other">
+
+      <Header value="Please briefly describe the reason:"/>
+
+      <TextArea
+        name="other_reason"
+        toName="reply"
+        placeholder="Enter the reason here..."
+        rows="3"/>
+    </View>
+
+  </View>
+
+  <View style="margin-top: 20px;">
+    <Header value="Reminder"/>
+    <Text
+      name="instructions"
+      value="Read both the parent comment and reply. Base your decision only on the information provided. Do not search online for additional context."/>
+  </View>
+
+</View>
