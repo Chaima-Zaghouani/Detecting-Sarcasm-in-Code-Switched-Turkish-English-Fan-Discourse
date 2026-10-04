@@ -4,7 +4,7 @@
 
 ### 1. Overview of the Annotation Task
 
-The purpose of this annotation task is to identify sarcasm in Turkish–English code-switched fan discussions about Turkish television dramas.
+The purpose of this annotation task is to identify sarcasm in Turkish–English code-switched fan discussions about Turkish television dramas, films, characters, actors, and storylines.
 
 For each data instance, you will be shown:
 
@@ -15,11 +15,12 @@ Your main task is to determine whether the reply is:
 
 - **Sarcastic**
 - **Non-sarcastic**
-- **Ambiguous/Uncertain**
+- **Ambiguous / Uncertain**
 
-When **Ambiguous/Uncertain** is selected, you will also be asked to indicate the reason why the sarcasm cannot be determined confidently.
+When **Ambiguous / Uncertain** is selected, you will also be asked to indicate the main reason why the sarcasm cannot be determined confidently.
 
 Please read both the parent comment and the reply before assigning a label. The parent comment is important because the intended meaning of a reply may depend on the conversational context.
+
 ### 2. Annotation Labels
 
 For each parent-comment and reply pair, select **one** of the following three labels.
@@ -38,22 +39,25 @@ Select **Non-sarcastic** when the reply expresses its meaning directly and since
 **Question to ask yourself:**  
 Does the writer appear to mean what they wrote?
 
-#### 2.3 Ambiguous/Uncertain
+#### 2.3 Ambiguous / Uncertain
 
-Select **Ambiguous/Uncertain** when there is not enough evidence to confidently determine whether the reply is sarcastic or non-sarcastic, even after reading the parent comment.
+Select **Ambiguous / Uncertain** when there is not enough evidence to confidently determine whether the reply is sarcastic or non-sarcastic, even after reading the parent comment.
 
 **Question to ask yourself:**  
 Could the reply reasonably be interpreted as either sarcastic or sincere?
 
-If you select **Ambiguous/Uncertain**, you must also indicate the main reason for your uncertainty.
+If you select **Ambiguous / Uncertain**, you must also indicate the **main reason** for your uncertainty.
 
-##### Reasons for Ambiguity/Uncertainty
+##### Reasons for Ambiguity / Uncertainty
 
 - **Insufficient conversational context** – More information from the conversation is needed to determine the intended tone.
-- **Drama/character context needed** – Knowledge about the television drama, episode, storyline, or characters is needed to determine the intended tone.
+- **Drama/character context needed** – Knowledge about the television drama, film, episode, storyline, or characters is needed to determine the intended tone.
 - **Language/expression unclear** – A Turkish or English expression, slang term, idiom, or code-switched phrase is unclear to you.
 - **Tone genuinely ambiguous** – You understand the language and available context, but the reply could still reasonably be interpreted as either sarcastic or sincere.
 - **Other** – Another reason prevents you from confidently determining the intended tone. Briefly describe the reason when this option is selected.
+
+Select **one main reason**. If more than one reason seems possible, choose the reason that most strongly affected your decision.
+
 ### 3. Decision Rules
 
 Follow these rules when assigning a sarcasm label.
@@ -85,13 +89,15 @@ Emojis such as 🙄, 😂, 👏, or 😭 may provide useful clues about tone, bu
 
 All replies in this task contain Turkish–English code-switching. Mixing Turkish and English is not itself evidence of sarcasm. Determine the label based on the intended meaning of the reply and its context.
 
-#### Rule 6: Use Ambiguous/Uncertain only when a confident decision cannot be made
+#### Rule 6: Use Ambiguous / Uncertain only when a confident decision cannot be made
 
-Do not select **Ambiguous/Uncertain** simply because the example is difficult. First consider the parent comment, reply, wording, tone, and other available clues.
+Do not select **Ambiguous / Uncertain** simply because the example is difficult.
 
-Select **Ambiguous/Uncertain** when the available information still does not provide enough evidence to confidently choose between **Sarcastic** and **Non-sarcastic**.
+First consider the parent comment, reply, wording, tone, and other available clues.
 
-#### Rule 7: If Ambiguous/Uncertain is selected, identify the main reason
+Select **Ambiguous / Uncertain** when the available information still does not provide enough evidence to confidently choose between **Sarcastic** and **Non-sarcastic**.
+
+#### Rule 7: If Ambiguous / Uncertain is selected, identify the main reason
 
 Choose the reason that best explains why you cannot confidently determine the intended tone:
 
@@ -105,7 +111,10 @@ If more than one reason seems possible, select the reason that had the greatest 
 
 #### Rule 8: Base your decision only on the information available to you
 
-Do not search online for the comment, television scene, episode, character, or storyline while annotating. If additional knowledge about the drama is necessary to make the decision, select **Ambiguous/Uncertain** and choose **Drama/character context needed**.
+Do not search online for the comment, television scene, film, episode, character, or storyline while annotating.
+
+If additional knowledge about the drama, film, episode, storyline, or character is necessary to make the decision, select **Ambiguous / Uncertain** and choose **Drama/character context needed**.
+
 ### 4. Annotation Examples
 
 The following examples illustrate how to apply the three primary sarcasm labels.
@@ -140,7 +149,7 @@ The reply directly agrees with the emotion expressed in the parent comment. Ther
 
 ---
 
-#### Example 3: Ambiguous/Uncertain
+#### Example 3: Ambiguous / Uncertain
 
 **Parent comment:**  
 He apologized to her and admitted that everything was his fault.
@@ -148,23 +157,25 @@ He apologized to her and admitted that everything was his fault.
 **Reply:**  
 Vay be, character development 👏.
 
-**Label:** Ambiguous/Uncertain
+**Label:** Ambiguous / Uncertain
 
 **Reason for uncertainty:** Tone genuinely ambiguous
 
 **Explanation:**  
-The reply could be sincere praise for the character's development, but it could also be an ironic reaction to the character finally admitting fault. The parent comment does not provide enough evidence to confidently distinguish between these interpretations. Therefore, the reply should be labeled **Ambiguous/Uncertain**, with **Tone genuinely ambiguous** as the reason.
+The reply could be sincere praise for the character's development, but it could also be an ironic reaction to the character finally admitting fault. The parent comment does not provide enough evidence to confidently distinguish between these interpretations. Therefore, the reply should be labeled **Ambiguous / Uncertain**, with **Tone genuinely ambiguous** as the reason.
+
 ### 5. Annotator Requirements
 
 Because this task focuses on Turkish–English code-switched text, annotators should be able to understand both Turkish and English well enough to interpret the meaning and tone of the comments.
 
-Annotators do not need specialized knowledge of Turkish television dramas. The parent comment will provide the primary conversational context needed for annotation.
+Annotators do not need specialized knowledge of Turkish television dramas or films. The parent comment will provide the primary conversational context needed for annotation.
 
-If an annotator understands the language but believes that knowledge of a specific television drama, episode, storyline, or character is necessary to determine the intended tone, the item should be labeled **Ambiguous/Uncertain** with the reason **Drama/character context needed**.
+If an annotator understands the language but believes that knowledge of a specific television drama, film, episode, storyline, or character is necessary to determine the intended tone, the item should be labeled **Ambiguous / Uncertain** with the reason **Drama/character context needed**.
 
-If a particular word, slang expression, idiom, or code-switched phrase cannot be understood, the item should be labeled **Ambiguous/Uncertain** with the reason **Language/expression unclear**.
+If a particular word, slang expression, idiom, or code-switched phrase cannot be understood, the item should be labeled **Ambiguous / Uncertain** with the reason **Language/expression unclear**.
 
-Annotators should not search online for additional information about the television drama, characters, episodes, or original comments while completing the annotation task.
+Annotators should not search online for additional information about television dramas, films, characters, episodes, storylines, or original comments while completing the annotation task.
+
 ### 6. Annotation Procedure
 
 For each item, follow these steps:
@@ -172,11 +183,11 @@ For each item, follow these steps:
 1. Read the **parent comment** carefully.
 2. Read the **reply** carefully.
 3. Consider the meaning of the reply in relation to the parent comment.
-4. Select one primary label:
+4. Select **one** primary label:
    - Sarcastic
    - Non-sarcastic
-   - Ambiguous/Uncertain
-5. If you select **Ambiguous/Uncertain**, select the main reason for your uncertainty:
+   - Ambiguous / Uncertain
+5. If you select **Ambiguous / Uncertain**, select **one main reason** for your uncertainty:
    - Insufficient conversational context
    - Drama/character context needed
    - Language/expression unclear
