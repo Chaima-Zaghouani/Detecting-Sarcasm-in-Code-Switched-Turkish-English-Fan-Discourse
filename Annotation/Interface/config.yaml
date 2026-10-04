@@ -1,0 +1,72 @@
+annotation_task_name: "Turkish-English Sarcasm Annotation"
+
+task_dir: .
+
+data_files:
+  - ../../Dataset/pilot_data.csv
+
+item_properties:
+  id_key: id
+  text_key: reply
+
+output_annotation_dir: annotation_output
+
+instance_display:
+  layout:
+    direction: vertical
+    gap: "20px"
+
+  fields:
+    - key: parent_comment
+      type: text
+      label: "Parent Comment"
+
+    - key: reply
+      type: text
+      label: "Reply"
+
+annotation_schemes:
+
+  - annotation_type: radio
+    name: sarcasm_label
+    description: "How should this reply be classified?"
+    labels:
+      - "Sarcastic"
+      - "Non-sarcastic"
+      - "Ambiguous / Uncertain"
+
+  - annotation_type: radio
+    name: ambiguity_reason
+    description: "If you selected Ambiguous / Uncertain, what is the main reason?"
+    labels:
+      - "Insufficient conversational context"
+      - "Drama/character context needed"
+      - "Language/expression unclear"
+      - "Tone genuinely ambiguous"
+      - "Other"
+
+  - annotation_type: text
+    name: other_reason
+    description: "If you selected Other, briefly describe the reason."
+
+annotation_instructions: |
+  ## Annotation Instructions
+
+  Read both the **Parent Comment** and the **Reply** before making your decision.
+
+  Classify the reply as:
+
+  - **Sarcastic**
+  - **Non-sarcastic**
+  - **Ambiguous / Uncertain**
+
+  If you select **Ambiguous / Uncertain**, identify the main reason for your uncertainty.
+
+  If you select **Other** as the ambiguity reason, briefly explain the reason.
+
+  Base your decision only on the information provided.
+
+  **Do not search online for additional context.**
+
+user_config:
+  allow_all_users: true
