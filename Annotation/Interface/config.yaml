@@ -1,5 +1,6 @@
 annotation_task_name: "Turkish-English Sarcasm Annotation"
 
+# Dataset
 task_dir: .
 
 data_files:
@@ -9,8 +10,10 @@ item_properties:
   id_key: id
   text_key: reply
 
+# Annotation output
 output_annotation_dir: annotation_output
 
+# Display the Parent Comment and Reply separately
 instance_display:
   layout:
     direction: vertical
@@ -25,8 +28,10 @@ instance_display:
       type: text
       label: "Reply"
 
+# Annotation questions
 annotation_schemes:
 
+  # Main sarcasm classification
   - annotation_type: radio
     name: sarcasm_label
     description: "How should this reply be classified?"
@@ -34,21 +39,40 @@ annotation_schemes:
       - "Sarcastic"
       - "Non-sarcastic"
       - "Ambiguous / Uncertain"
+    label_requirement:
+      required: true
 
+  # Display only when Ambiguous / Uncertain is selected
   - annotation_type: radio
     name: ambiguity_reason
-    description: "If you selected Ambiguous / Uncertain, what is the main reason?"
+    description: "Why is the reply ambiguous or uncertain?"
     labels:
       - "Insufficient conversational context"
       - "Drama/character context needed"
       - "Language/expression unclear"
       - "Tone genuinely ambiguous"
       - "Other"
+    label_requirement:
+      required: true
+    display_logic:
+      show_when:
+        - schema: sarcasm_label
+          operator: equals
+          value: "Ambiguous / Uncertain"
 
+  # Display only when Other is selected
   - annotation_type: text
     name: other_reason
-    description: "If you selected Other, briefly describe the reason."
+    description: "Please briefly describe the reason:"
+    label_requirement:
+      required: true
+    display_logic:
+      show_when:
+        - schema: ambiguity_reason
+          operator: equals
+          value: "Other"
 
+# Instructions displayed to annotators
 annotation_instructions: |
   ## Annotation Instructions
 
@@ -60,13 +84,22 @@ annotation_instructions: |
   - **Non-sarcastic**
   - **Ambiguous / Uncertain**
 
-  If you select **Ambiguous / Uncertain**, identify the main reason for your uncertainty.
+  If you select **Ambiguous / Uncertain**, identify the main reason for your uncertainty:
 
-  If you select **Other** as the ambiguity reason, briefly explain the reason.
+  - **Insufficient conversational context**
+  - **Drama/character context needed**
+  - **Language/expression unclear**
+  - **Tone genuinely ambiguous**
+  - **Other**
 
-  Base your decision only on the information provided.
+  Select the **one main reason** that most strongly affects your decision.
+
+  If you select **Other**, briefly explain the reason in the text box provided.
+
+  Base your decision only on the information provided in the Parent Comment and Reply.
 
   **Do not search online for additional context.**
 
+# User access
 user_config:
   allow_all_users: true
