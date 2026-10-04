@@ -4,14 +4,14 @@ This folder contains the pilot dataset for the project:
 
 **Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse**
 
-The pilot dataset contains **50 parent–reply pairs** collected from online fan discourse. Each reply is intended to contain Turkish–English code-switching and will later be annotated for sarcasm.
+The pilot dataset contains **50 parent–reply pairs** collected from online fan discourse. The replies are intended to contain Turkish–English code-switching and will later be annotated for sarcasm.
 
 ## Dataset Format
 
 | Column | Description |
 |---|---|
 | `id` | Unique identifier for each instance |
-| `platform` | Source platform, such as Reddit or YouTube |
+| `platform` | Source platform: Reddit or YouTube |
 | `parent_comment` | Original parent comment providing conversational context |
 | `reply` | Reply that will be annotated for sarcasm |
 | `timestamp` | Relative or recorded time associated with the reply |
@@ -27,19 +27,27 @@ The pilot dataset contains **50 parent–reply pairs** collected from online fan
 | yt_0001 | YouTube | What a movie... 👋 | I cried & cried & cried 😭😭😭 Çok güzel💙 | 7 years ago | Mixed |
 | yt_0009 | YouTube | Bitanesi nedir ya? Elin adamına bitanesi demek kadar anlamsız saçma ve insanı sinir eden az şey vardır insan ilişkilerinde. | They're acting like it's normal. Saçma işte. | 1 day ago | Mixed |
 
-> The complete dataset is available in [`pilot_data.csv`](pilot_data.csv).
+> The complete pilot dataset is available in [`pilot_data.csv`](pilot_data.csv).
 
-## Data Collection
+## Data Sources
 
-The pilot data were collected from **Reddit and YouTube** discussions related to Turkish television series, films, actors, characters, and fan conversations.
+The pilot data were collected from **Reddit and YouTube** discussions related to Turkish television series, films, actors, characters, storylines, and fan conversations.
 
-Each instance consists of:
+YouTube serves as a primary source of fan comments, while Reddit provides additional conversational discussions and parent–reply interactions.
+
+## Data Collection Procedure
+
+The data collection process focuses on finding naturally occurring Turkish–English code-switched replies in online fan discourse.
+
+Each collected instance contains:
 
 1. A **parent comment** that provides conversational context.
-2. A **reply** that is the target of annotation.
-3. Basic metadata such as platform and timestamp.
+2. A **reply** that is the target of the annotation task.
+3. Basic metadata, including the source platform and timestamp.
 
-The data were collected **without assigning sarcasm labels**. Sarcasm labels will be created during the annotation phase.
+Candidate comments were manually checked to determine whether they satisfied the project's data collection criteria.
+
+The filtering process is used only to identify suitable Turkish–English code-switched examples. **No sarcasm labels are assigned during data collection.** Sarcasm labels will be created later by human annotators.
 
 ## Inclusion Criteria
 
@@ -47,23 +55,41 @@ An instance is included when:
 
 - A parent comment and reply are available.
 - The discussion is related to Turkish fan discourse, such as television series, films, actors, characters, or storylines.
-- The reply contains Turkish and English language use.
+- The target reply contains both Turkish and English language use.
 - The reply contains enough meaningful text for annotation.
 - The example is not an obvious duplicate, advertisement, or spam.
 
+For this project, **genuine Turkish–English code-switching** means that Turkish and English are meaningfully used in the target reply. A show name, character name, URL, username, acronym, or other isolated named entity alone is not considered sufficient evidence of code-switching.
+
+Detailed inclusion and exclusion rules are provided in:
+
+[`Data_Collection_Criteria.md`](Data_Collection_Criteria.md)
+
 ## Annotation Task
 
-Annotators will read both the **parent comment** and the **reply** and classify the reply as:
+Annotators will read both the **parent comment** and the **reply** and classify the intended meaning of the reply as one of three labels:
 
 - **Sarcastic**
 - **Non-sarcastic**
 - **Ambiguous / Uncertain**
 
-For an **Ambiguous / Uncertain** label, annotators will also select the main reason for uncertainty.
+If **Ambiguous / Uncertain** is selected, the annotator will also identify the main reason for the uncertainty, such as:
+
+- Insufficient conversational context
+- Drama or character context needed
+- Language or expression unclear
+- Tone genuinely ambiguous
+- Other
 
 Detailed annotation instructions are available in:
 
-`Annotation/Guidelines/Annotation_Guidelines.md`
+[`Annotation_Guidelines.md`](../Annotation/Guidelines/Annotation_Guidelines.md)
+
+## Estimated Annotation Time
+
+Each parent–reply pair is expected to take approximately **20–40 seconds** to annotate. Items requiring additional interpretation or an ambiguity reason may take longer.
+
+Annotators are instructed to make their judgment using only the information presented in the annotation interface and **not to search online for additional context**.
 
 ## Dataset Size
 
@@ -72,20 +98,31 @@ Detailed annotation instructions are available in:
 - **Unit of annotation:** Parent comment + reply pair
 - **Target text:** Reply
 - **Language setting:** Turkish–English code-switched discourse
+- **Sarcasm labels:** Not assigned during data collection
+
+## Sampling
+
+The pilot dataset was created by identifying candidate Turkish–English comments from relevant online fan discussions and manually checking them against the project's inclusion and exclusion criteria.
+
+The pilot is intended to test the annotation task, annotation guidelines, and interface before expanding the dataset.
+
+## Missing Data
+
+Only instances with an available parent comment and target reply are included. Examples without sufficient conversational context or meaningful textual content are excluded during collection.
 
 ## Privacy
 
-Usernames and unnecessary personally identifying information are not included in the dataset. The dataset focuses on the textual content required for the research task.
+Usernames and unnecessary personally identifying information are not included in the dataset. The dataset retains only the textual and metadata information needed for the research and annotation task.
 
 ## Files
 
-- `pilot_data.csv` — pilot dataset
-- `Data_Collection_Criteria.md` — inclusion and exclusion criteria
+- [`pilot_data.csv`](pilot_data.csv) — pilot dataset
+- [`Data_Collection_Criteria.md`](Data_Collection_Criteria.md) — data inclusion and exclusion criteria
 - `README.md` — dataset documentation
 
-## Project
+## Project Information
 
-ARI 510 — Fall 2026  
-University of Michigan-Flint
-
-**Project:** Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse
+**Course:** ARI 510 — Fall 2026  
+**Institution:** University of Michigan-Flint  
+**Project:** Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse  
+**Graduate Student:** Chaima Zaghouani
