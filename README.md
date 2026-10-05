@@ -50,7 +50,9 @@ Annotators independently:
 3. If **Ambiguous / Uncertain** is selected, identify the main reason for uncertainty.
 4. Complete the assigned examples without searching online for additional context.
 
-The annotation interface is hosted online for independent annotation.
+The annotation interface is hosted online for independent annotation:
+
+**Annotation Interface:** https://detecting-sarcasm-in-code-switched.onrender.com
 
 ## Internal Pilot
 
