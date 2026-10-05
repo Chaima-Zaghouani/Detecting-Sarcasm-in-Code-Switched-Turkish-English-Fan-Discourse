@@ -1,0 +1,174 @@
+<!-- CONFIG_HASH: 3996c209f07ad218516344f4682613fc_ef67b9b6cab0eed0c685dea8beb74b55 -->
+<!-- Generated annotation layout file -->
+<!-- This file was automatically generated based on the annotation schemes in your config -->
+<!-- You can customize this file to modify the layout of your annotation interface -->
+<!-- Changes to this file will be preserved across server restarts -->
+
+<div class="annotation_schema">
+
+    <form id="sarcasm_label" class="annotation-form radio shadcn-radio-container" action="javascript:void(0)" data-annotation-id="0" data-annotation-type="radio" data-schema-name="sarcasm_label" data-grid-columns="1">
+        
+        <fieldset schema="sarcasm_label">
+            <legend class="shadcn-radio-title">How should this reply be classified?</legend>
+            <div class="shadcn-radio-options">
+    
+            <div class="shadcn-radio-option">
+                <input class="sarcasm_label shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="sarcasm_label_Sarcastic_radio"
+                       name="sarcasm_label"
+                       value="Sarcastic"
+                       selection_constraint="single"
+                       schema="sarcasm_label"
+                       label_name="Sarcastic"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="sarcasm_label_Sarcastic_radio" class="shadcn-radio-label" >Sarcastic</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="sarcasm_label shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="sarcasm_label_Non-sarcastic_radio"
+                       name="sarcasm_label"
+                       value="Non-sarcastic"
+                       selection_constraint="single"
+                       schema="sarcasm_label"
+                       label_name="Non-sarcastic"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="sarcasm_label_Non-sarcastic_radio" class="shadcn-radio-label" >Non Sarcastic</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="sarcasm_label shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="sarcasm_label_Ambiguous / Uncertain_radio"
+                       name="sarcasm_label"
+                       value="Ambiguous / Uncertain"
+                       selection_constraint="single"
+                       schema="sarcasm_label"
+                       label_name="Ambiguous / Uncertain"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="sarcasm_label_Ambiguous / Uncertain_radio" class="shadcn-radio-label" >Ambiguous / Uncertain</label>
+            </div>
+        </div></fieldset></form>
+<div class="display-logic-container display-logic-hidden"
+     data-display-logic="{&quot;show_when&quot;: [{&quot;schema&quot;: &quot;sarcasm_label&quot;, &quot;operator&quot;: &quot;equals&quot;, &quot;value&quot;: &quot;Ambiguous / Uncertain&quot;}]}"
+     data-schema-name="ambiguity_reason"
+     data-display-logic-target="true">
+
+    <form id="ambiguity_reason" class="annotation-form radio shadcn-radio-container" action="javascript:void(0)" data-annotation-id="1" data-annotation-type="radio" data-schema-name="ambiguity_reason" data-grid-columns="1">
+        
+        <fieldset schema="ambiguity_reason">
+            <legend class="shadcn-radio-title">Why is the reply ambiguous or uncertain?</legend>
+            <div class="shadcn-radio-options">
+    
+            <div class="shadcn-radio-option">
+                <input class="ambiguity_reason shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="ambiguity_reason_Insufficient conversational context_radio"
+                       name="ambiguity_reason"
+                       value="Insufficient conversational context"
+                       selection_constraint="single"
+                       schema="ambiguity_reason"
+                       label_name="Insufficient conversational context"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="ambiguity_reason_Insufficient conversational context_radio" class="shadcn-radio-label" >Insufficient Conversational Context</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="ambiguity_reason shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="ambiguity_reason_Drama/character context needed_radio"
+                       name="ambiguity_reason"
+                       value="Drama/character context needed"
+                       selection_constraint="single"
+                       schema="ambiguity_reason"
+                       label_name="Drama/character context needed"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="ambiguity_reason_Drama/character context needed_radio" class="shadcn-radio-label" >Drama/character Context Needed</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="ambiguity_reason shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="ambiguity_reason_Language/expression unclear_radio"
+                       name="ambiguity_reason"
+                       value="Language/expression unclear"
+                       selection_constraint="single"
+                       schema="ambiguity_reason"
+                       label_name="Language/expression unclear"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="ambiguity_reason_Language/expression unclear_radio" class="shadcn-radio-label" >Language/expression Unclear</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="ambiguity_reason shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="ambiguity_reason_Tone genuinely ambiguous_radio"
+                       name="ambiguity_reason"
+                       value="Tone genuinely ambiguous"
+                       selection_constraint="single"
+                       schema="ambiguity_reason"
+                       label_name="Tone genuinely ambiguous"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="ambiguity_reason_Tone genuinely ambiguous_radio" class="shadcn-radio-label" >Tone Genuinely Ambiguous</label>
+            </div>
+        
+            <div class="shadcn-radio-option">
+                <input class="ambiguity_reason shadcn-radio-input annotation-input"
+                       type="radio"
+                       id="ambiguity_reason_Other_radio"
+                       name="ambiguity_reason"
+                       value="Other"
+                       selection_constraint="single"
+                       schema="ambiguity_reason"
+                       label_name="Other"
+                       onclick="onlyOne(this);registerAnnotation(this);"
+                       validation="required"
+                       >
+                <label for="ambiguity_reason_Other_radio" class="shadcn-radio-label" >Other</label>
+            </div>
+        </div></fieldset></form>
+</div>
+<div class="display-logic-container display-logic-hidden"
+     data-display-logic="{&quot;show_when&quot;: [{&quot;schema&quot;: &quot;ambiguity_reason&quot;, &quot;operator&quot;: &quot;equals&quot;, &quot;value&quot;: &quot;Other&quot;}]}"
+     data-schema-name="other_reason"
+     data-display-logic-target="true">
+
+    <form id="other_reason" class="annotation-form textbox shadcn-textbox-container " action="javascript:void(0)" data-annotation-id="2" data-annotation-type="text" data-schema-name="other_reason"   data-grid-columns="1">
+            
+        <fieldset schema_name="other_reason">
+    
+            <legend class="shadcn-textbox-title">Please briefly describe the reason:</legend>
+        
+            <div class="shadcn-textbox-item">
+                
+        
+                <input class="other_reason shadcn-textbox-input annotation-input"
+                       type="text"
+                       id="other_reason_text_box_text"
+                       name="other_reason:::text_box"
+                       validation="required"
+                       schema="other_reason"
+                       label_name="text_box"
+                       
+                       style=""
+                       >
+            </div></fieldset></form>
+</div>
+
+</div>
