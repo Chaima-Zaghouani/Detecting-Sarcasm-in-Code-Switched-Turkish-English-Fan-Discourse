@@ -94,7 +94,8 @@ Annotators are instructed to make their judgment using only the information pres
 ## Dataset Size
 
 - **Total pilot instances:** 50
-- **Sources:** Reddit and YouTube
+- **YouTube:** 28 pairs (56%)
+- **Reddit:** 22 pairs (44%)
 - **Unit of annotation:** Parent comment + reply pair
 - **Target text:** Reply
 - **Language setting:** Turkish–English code-switched discourse
