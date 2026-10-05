@@ -4,7 +4,7 @@ annotation_task_name: "Turkish-English Sarcasm Annotation"
 task_dir: .
 
 data_files:
-  - ../../Dataset/pilot_data.csv
+  - pilot_data.csv
 
 item_properties:
   id_key: id
