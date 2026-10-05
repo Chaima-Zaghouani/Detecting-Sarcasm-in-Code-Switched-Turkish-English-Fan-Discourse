@@ -103,3 +103,10 @@ annotation_instructions: |
 # User access
 user_config:
   allow_all_users: true
+
+huggingface_backup:
+  enabled: true
+  repo_id: "Chaimaza/turkish-english-sarcasm-annotations"
+  repo_type: "dataset"
+  private: true
+  schedule_minutes: 5
