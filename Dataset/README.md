@@ -118,7 +118,18 @@ Usernames and unnecessary personally identifying information are not included in
 
 - [`pilot_data.csv`](pilot_data.csv) — pilot dataset
 - [`Data_Collection_Criteria.md`](Data_Collection_Criteria.md) — data inclusion and exclusion criteria
+- [`LICENSE.md`](LICENSE.md) — licensing information for the dataset, annotations, and project-created metadata
 - `README.md` — dataset documentation
+
+## License
+
+The **project-created annotations and metadata** are licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0) License**.
+
+The original comment text collected from **YouTube and Reddit** is not relicensed under CC BY 4.0 and remains subject to the applicable platform terms and the rights of the original content creators.
+
+For complete licensing and data-release information, see:
+
+[`LICENSE.md`](LICENSE.md)
 
 ## Project Information
 
