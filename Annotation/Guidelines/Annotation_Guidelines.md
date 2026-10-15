@@ -4,7 +4,7 @@
 
 ### 1. Overview of the Annotation Task
 
-The purpose of this annotation task is to identify sarcasm in Turkish–English code-switched fan discussions about Turkish television dramas, films, characters, actors, and storylines.
+The purpose of this annotation task is to identify sarcasm in Turkish–English code-switched online conversations, including fan discussions and broader conversational topics from Reddit and YouTube.
 
 For each data instance, you will be shown:
 
@@ -87,7 +87,7 @@ Emojis such as 🙄, 😂, 👏, or 😭 may provide useful clues about tone, bu
 
 #### Rule 5: Do not assume that code-switching indicates sarcasm
 
-All replies in this task contain Turkish–English code-switching. Mixing Turkish and English is not itself evidence of sarcasm. Determine the label based on the intended meaning of the reply and its context.
+The dataset focuses on Turkish–English code-switched replies. Mixing Turkish and English is not itself evidence of sarcasm. Determine the label based on the intended meaning of the reply and its context.
 
 #### Rule 6: Use Ambiguous / Uncertain only when a confident decision cannot be made
 
