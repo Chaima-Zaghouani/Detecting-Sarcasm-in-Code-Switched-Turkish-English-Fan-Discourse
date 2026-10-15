@@ -1,79 +1,119 @@
-# Pilot Dataset
+# Turkish–English Code-Switched Sarcasm Dataset
 
-This folder contains the pilot dataset for the project:
+This folder contains the pilot and expanded datasets for the project:
 
 **Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse**
 
-The pilot dataset contains **50 parent–reply pairs** collected from online fan discourse. The replies are intended to contain Turkish–English code-switching and will later be annotated for sarcasm.
+The project investigates sarcasm detection in Turkish–English code-switched online conversations. Each dataset instance consists of a parent comment providing conversational context and a corresponding reply that serves as the target for sarcasm annotation.
+
+The dataset currently contains **800 unlabeled parent–reply pairs**, including the initial 50-example pilot dataset. The expanded dataset combines collected social-media comments with synthetically adapted Turkish–English code-switched replies.
+
+Sarcasm labels have not yet been assigned. The dataset will be annotated by human annotators.
+
+## Dataset Files
+
+| File | Description | Instances |
+|---|---|---|
+| `pilot_data.csv` | Initial pilot dataset for testing the annotation process | 50 |
+| `unlabeled_data.csv` | Expanded dataset prepared for human sarcasm annotation | 800 |
+
+The 800-example dataset is the primary dataset for the annotation phase. The pilot examples are included in the expanded dataset and should not be counted as additional independent instances.
 
 ## Dataset Format
+
+Both CSV files follow the same structure.
 
 | Column | Description |
 |---|---|
 | `id` | Unique identifier for each instance |
-| `platform` | Source platform: Reddit or YouTube |
-| `parent_comment` | Original parent comment providing conversational context |
-| `reply` | Reply that will be annotated for sarcasm |
-| `timestamp` | Relative or recorded time associated with the reply |
-| `language_mix` | Language-mixing category; pilot examples are marked `Mixed` |
+| `platform` | Source platform associated with the original discussion: Reddit or YouTube |
+| `parent_comment` | Parent comment providing conversational context |
+| `reply` | Target reply to be annotated for sarcasm |
+| `timestamp` | Relative or recorded timestamp associated with the original discussion |
+| `language_mix` | Language-mixing category; examples are marked `Mixed` |
+
+Each row represents one parent–reply pair. The reply is the target of the sarcasm classification task, while the parent comment provides context for interpretation.
 
 ## Dataset Preview
 
 | ID | Platform | Parent Comment | Reply | Timestamp | Language Mix |
 |---|---|---|---|---|---|
 | rd_0001 | Reddit | just a heads up, Behzat Ç characters use a lot of Ankara accent | I lived in Ankara for 2 years. Angarali Turgut en favoriyim sarkici, yani ;-) | 1 year ago | Mixed |
-| rd_0002 | Reddit | Arafta episode 98 and sone thoughts on the lead actors🪸🔥💫 | Herkese merhaba 🪸🔥✨️😊 I loved episode 98. ❤️🥰 It felt too short and made me realise this is how Arafta would have been if they released 1 eposode every day. | 5 months ago | Mixed |
-| rd_0005 | Reddit | What sort of genres are you into? | Merhabalar! I love spooky stuff-I’d love a good crime thriller, horror or fantasy. Teşekkürler! | 2 years ago | Mixed |
+| rd_0002 | Reddit | Arafta episode 98 and sone thoughts on the lead actors🪸🔥💫 | Herkese merhaba 🪸🔥✨️😊 I loved episode 98. ❤️🥰 It felt too short and made me realise this is how Arafta would have been if they released 1 episode every day. | 5 months ago | Mixed |
+| rd_0005 | Reddit | What sort of genres are you into? | Merhabalar! I love spooky stuff—I’d love a good crime thriller, horror or fantasy. Teşekkürler! | 2 years ago | Mixed |
 | yt_0001 | YouTube | What a movie... 👋 | I cried & cried & cried 😭😭😭 Çok güzel💙 | 7 years ago | Mixed |
-| yt_0009 | YouTube | Bitanesi nedir ya? Elin adamına bitanesi demek kadar anlamsız saçma ve insanı sinir eden az şey vardır insan ilişkilerinde. | They're acting like it's normal. Saçma işte. | 1 day ago | Mixed |
 
-> The complete pilot dataset is available in [`pilot_data.csv`](pilot_data.csv).
+The complete datasets are available in [`pilot_data.csv`](pilot_data.csv) and [`unlabeled_data.csv`](unlabeled_data.csv).
 
 ## Data Sources
 
-The pilot data were collected from **Reddit and YouTube** discussions related to Turkish television series, films, actors, characters, storylines, and fan conversations.
+The dataset uses discussions associated with **Reddit and YouTube**.
 
-YouTube serves as a primary source of fan comments, while Reddit provides additional conversational discussions and parent–reply interactions.
+The initial pilot collection focused on Turkish television series, films, actors, characters, storylines, and fan conversations.
 
-## Data Collection Procedure
+The expanded dataset also includes additional Reddit conversational threads covering broader topics. These examples provide a wider range of conversational contexts for investigating sarcasm.
 
-The data collection process focuses on finding naturally occurring Turkish–English code-switched replies in online fan discourse.
+The `platform` field identifies the platform associated with the source discussion. It does not necessarily indicate that the final code-switched wording was posted verbatim on that platform.
 
-Each collected instance contains:
+## Data Collection and Expansion Procedure
 
-1. A **parent comment** that provides conversational context.
-2. A **reply** that is the target of the annotation task.
-3. Basic metadata, including the source platform and timestamp.
+The dataset was developed in two stages.
 
-Candidate comments were manually checked to determine whether they satisfied the project's data collection criteria.
+### Stage 1: Pilot Data Collection
 
-The filtering process is used only to identify suitable Turkish–English code-switched examples. **No sarcasm labels are assigned during data collection.** Sarcasm labels will be created later by human annotators.
+An initial set of 50 parent–reply pairs was assembled from Reddit and YouTube discussions.
+
+Candidate examples were examined for Turkish–English language use, conversational context, and suitability for sarcasm annotation.
+
+The pilot dataset was intended to test the annotation guidelines, task design, and annotation interface.
+
+### Stage 2: Dataset Expansion
+
+The dataset was expanded to 800 parent–reply pairs using additional Reddit conversational data and Turkish–English code-switching adaptations.
+
+For synthetically adapted examples, Turkish expressions were incorporated into English-language replies to create bilingual conversational text.
+
+The expanded dataset was subsequently reviewed and corrected to address identified issues such as missing language mixing, awkward expressions, and formatting inconsistencies.
+
+Because some replies were modified, the expanded dataset should be considered **partly synthetic**, rather than a collection of exclusively naturally occurring Turkish–English social-media comments.
+
+The synthetic adaptations preserve the general conversational context but are not presented as verbatim original user posts.
+
+**No sarcasm labels were assigned during data collection or expansion.** Sarcasm judgments will be obtained through human annotation.
 
 ## Inclusion Criteria
 
-An instance is included when:
+An instance is intended to satisfy the following criteria:
 
-- A parent comment and reply are available.
-- The discussion is related to Turkish fan discourse, such as television series, films, actors, characters, or storylines.
-- The target reply contains both Turkish and English language use.
-- The reply contains enough meaningful text for annotation.
-- The example is not an obvious duplicate, advertisement, or spam.
+- A parent comment and corresponding reply are available.
+- The parent comment provides meaningful conversational context.
+- The target reply contains meaningful Turkish and English language use.
+- The reply contains sufficient information for sarcasm annotation.
+- The instance is not an obvious duplicate, advertisement, or spam.
 
-For this project, **genuine Turkish–English code-switching** means that Turkish and English are meaningfully used in the target reply. A show name, character name, URL, username, acronym, or other isolated named entity alone is not considered sufficient evidence of code-switching.
+For this project, **Turkish–English code-switching** refers to the meaningful use of both languages within the target reply.
 
-Detailed inclusion and exclusion rules are provided in:
+A television show name, character name, URL, username, acronym, or other isolated named entity alone is not considered sufficient evidence of code-switching.
+
+Synthetic language-mixing examples are also subject to linguistic quality review. Automatic language checks do not guarantee that every example is fully natural or linguistically valid.
+
+Detailed criteria are available in:
 
 [`Data_Collection_Criteria.md`](Data_Collection_Criteria.md)
 
 ## Annotation Task
 
-Annotators will read both the **parent comment** and the **reply** and classify the intended meaning of the reply as one of three labels:
+Human annotators will examine both the **parent comment** and the **target reply** to determine whether the reply expresses sarcasm.
 
-- **Sarcastic**
-- **Non-sarcastic**
-- **Ambiguous / Uncertain**
+Each instance will receive one of three labels:
 
-If **Ambiguous / Uncertain** is selected, the annotator will also identify the main reason for the uncertainty, such as:
+| Label | Category | Description |
+|---|---|---|
+| 1 | Sarcastic | The reply expresses sarcasm, irony, or a meaning that contrasts with its literal wording |
+| 0 | Non-sarcastic | The reply does not express sarcasm |
+| U | Ambiguous / Uncertain | The intended meaning cannot be determined confidently |
+
+For examples labeled **Ambiguous / Uncertain**, annotators will identify the primary reason for uncertainty:
 
 - Insufficient conversational context
 - Drama or character context needed
@@ -81,52 +121,92 @@ If **Ambiguous / Uncertain** is selected, the annotator will also identify the m
 - Tone genuinely ambiguous
 - Other
 
+Annotators may also flag unnatural language mixing or unclear wording for subsequent quality review.
+
+The annotation task focuses on interpreting the reply in relation to its parent comment. The presence of Turkish words, negative sentiment, or strong emotional expressions alone does not establish sarcasm.
+
 Detailed annotation instructions are available in:
 
 [`Annotation_Guidelines.md`](../Annotation/Guidelines/Annotation_Guidelines.md)
 
 ## Estimated Annotation Time
 
-Each parent–reply pair is expected to take approximately **20–40 seconds** to annotate. Items requiring additional interpretation or an ambiguity reason may take longer.
+Each parent–reply pair is expected to require approximately **20–40 seconds** for annotation.
 
-Annotators are instructed to make their judgment using only the information presented in the annotation interface and **not to search online for additional context**.
+Longer comments and examples requiring additional interpretation may take more time.
+
+Annotators are instructed to use only the provided conversational context and not to search online for additional information.
 
 ## Dataset Size
 
-- **Total pilot instances:** 50
-- **YouTube:** 28 pairs (56%)
-- **Reddit:** 22 pairs (44%)
-- **Unit of annotation:** Parent comment + reply pair
-- **Target text:** Reply
-- **Language setting:** Turkish–English code-switched discourse
-- **Sarcasm labels:** Not assigned during data collection
+| Property | Value |
+|---|---|
+| Pilot dataset | 50 parent–reply pairs |
+| Expanded dataset | 800 parent–reply pairs |
+| Reddit examples in expanded dataset | 772 (96.5%) |
+| YouTube examples in expanded dataset | 28 (3.5%) |
+| Unit of annotation | Parent comment + reply pair |
+| Target text | Reply |
+| Language setting | Turkish–English code-switched discourse |
+| Sarcasm labels | Not yet assigned |
+| Annotation method | Human annotation |
+
+The expanded dataset includes both naturally collected and synthetically adapted material.
+
+The source distribution is uneven, with Reddit representing the majority of the expanded dataset. This imbalance should be considered when interpreting future experimental results.
 
 ## Sampling
 
-The pilot dataset was created by identifying candidate Turkish–English comments from relevant online fan discussions and manually checking them against the project's inclusion and exclusion criteria.
+The pilot dataset was assembled by identifying candidate comments from relevant online fan discussions and reviewing them against the project's inclusion and exclusion criteria.
 
-The pilot is intended to test the annotation task, annotation guidelines, and interface before expanding the dataset.
+The expanded dataset incorporates additional conversational material and synthetic Turkish–English adaptations.
+
+Consequently, the expanded dataset is not a random or statistically representative sample of all Turkish–English code-switched social-media discourse.
+
+The dataset is intended for exploratory research into sarcasm annotation and classification in bilingual conversational text.
+
+## Data Quality and Limitations
+
+The expanded dataset has undergone structural checks and text correction.
+
+The following limitations remain relevant:
+
+- Some code-switched replies were synthetically constructed rather than written by bilingual social-media users.
+- Certain Turkish expressions may occur repeatedly across different examples.
+- Some replies are considerably longer than others.
+- The dataset contains a substantial imbalance between Reddit and YouTube examples.
+- The expanded dataset includes conversations beyond Turkish television and fan discourse.
+- Human linguistic review is necessary to establish the naturalness of individual code-switching examples.
+
+These characteristics should be considered when interpreting annotation results and evaluating machine-learning models.
 
 ## Missing Data
 
-Only instances with an available parent comment and target reply are included. Examples without sufficient conversational context or meaningful textual content are excluded during collection.
+The dataset is structured to retain a parent comment, reply, platform, timestamp, language-mixing category, and unique identifier for each instance.
+
+Sarcasm labels are intentionally absent from the unlabeled dataset and will be added after human annotation.
 
 ## Privacy
 
-Usernames and unnecessary personally identifying information are not included in the dataset. The dataset retains only the textual and metadata information needed for the research and annotation task.
+The dataset does not include usernames as a dedicated metadata field.
+
+Unnecessary personal identifiers should be excluded where possible. Original text, quotations, and links may nevertheless contain identifying information and should be reviewed before public redistribution.
 
 ## Files
 
-- [`pilot_data.csv`](pilot_data.csv) — pilot dataset
+- [`pilot_data.csv`](pilot_data.csv) — initial 50-example pilot dataset
+- [`unlabeled_data.csv`](unlabeled_data.csv) — expanded 800-example unlabeled dataset
 - [`Data_Collection_Criteria.md`](Data_Collection_Criteria.md) — data inclusion and exclusion criteria
-- [`LICENSE.md`](LICENSE.md) — licensing information for the dataset, annotations, and project-created metadata
+- [`LICENSE.md`](LICENSE.md) — dataset licensing and redistribution information
 - `README.md` — dataset documentation
 
 ## License
 
 The **project-created annotations and metadata** are licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0) License**.
 
-The original comment text collected from **YouTube and Reddit** is not relicensed under CC BY 4.0 and remains subject to the applicable platform terms and the rights of the original content creators.
+The original comment text collected from **Reddit and YouTube** is not relicensed under CC BY 4.0 and remains subject to the applicable platform terms and the rights of the original content creators.
+
+Synthetic modifications do not automatically eliminate rights or restrictions associated with the underlying source text.
 
 For complete licensing and data-release information, see:
 
@@ -135,6 +215,17 @@ For complete licensing and data-release information, see:
 ## Project Information
 
 **Course:** ARI 510 — Fall 2026  
-**Institution:** University of Michigan-Flint  
+**Institution:** University of Michigan–Flint  
 **Project:** Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse  
 **Graduate Student:** Chaima Zaghouani
+
+## Current Project Status
+
+- Pilot dataset collected: **50 examples**
+- Expanded unlabeled dataset prepared: **800 examples**
+- Dataset uploaded to GitHub
+- Human sarcasm annotation: **Pending**
+- Inter-annotator agreement evaluation: **Planned**
+- Model training and evaluation: **Planned**
+
+The next stage of the project is human annotation of the expanded dataset, followed by annotation agreement analysis and the development of sarcasm detection models.
