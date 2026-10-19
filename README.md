@@ -10,7 +10,7 @@ Sarcasm can be challenging to identify because its interpretation often depends 
 
 The project began with naturally occurring Turkish–English fan discussions collected from Reddit and YouTube. The dataset was subsequently expanded using additional Reddit conversations and synthetically adapted Turkish–English code-switched replies.
 
-The goal of this project is to develop a **human-annotated dataset** and evaluate machine-learning approaches for automatically detecting sarcasm in Turkish–English code-switched text.
+The goal of this project is to use a **human-annotated dataset** and evaluate machine-learning approaches for automatically detecting sarcasm in Turkish–English code-switched text.
 
 ## Phase 1: Dataset and Annotation
 
@@ -36,7 +36,7 @@ Each instance consists of:
 
 The expanded dataset is available in [`Dataset/unlabeled_data.csv`](Dataset/unlabeled_data.csv).
 
-No sarcasm labels were assigned during data collection or dataset expansion. Labels will be obtained through independent human annotation.
+No sarcasm labels were assigned during data collection or dataset expansion. The expanded dataset has subsequently been annotated by five independent human annotators, with their responses stored separately.
 
 ## Dataset Development
 
@@ -107,23 +107,34 @@ The internal pilot produced:
 
 These internal annotations were used to evaluate the annotation setup and are **not considered final ground-truth labels**.
 
-Final labels will be determined after collecting annotations from multiple annotators, evaluating **inter-annotator agreement**, and reviewing cases with substantial disagreement.
+Final ground-truth labels will be determined after evaluating **inter-annotator agreement** and reviewing cases with substantial disagreement.
 
 ## Expanded Dataset Annotation
 
-The expanded dataset contains **800 unlabeled parent–reply pairs** prepared for independent human annotation.
+The expanded dataset contains **800 parent–reply pairs**. Five independent human annotators have annotated these instances using the Potato interface, according to the project annotation guidelines.
 
-Annotators will examine the target reply together with its parent comment and assign one of the three sarcasm categories.
+Each annotator's responses are maintained in a separate CSV file in [`Dataset/labeled_data/`](Dataset/labeled_data/):
 
-After annotation, the project will:
+- [`labeled_data_annotator1.csv`](Dataset/labeled_data/labeled_data_annotator1.csv)
+- [`labeled_data_annotator2.csv`](Dataset/labeled_data/labeled_data_annotator2.csv)
+- [`labeled_data_annotator3.csv`](Dataset/labeled_data/labeled_data_annotator3.csv)
+- [`labeled_data_annotator4.csv`](Dataset/labeled_data/labeled_data_annotator4.csv)
+- [`labeled_data_annotator5.csv`](Dataset/labeled_data/labeled_data_annotator5.csv)
 
-1. Collect and organize annotations from independent annotators.
-2. Calculate inter-annotator agreement using Cohen's kappa where applicable.
-3. Examine disagreements and ambiguous examples.
-4. Review examples flagged for unclear or unnatural language mixing.
-5. Establish the final labeled dataset for model development and evaluation.
+Each CSV preserves the original dataset columns and adds `label` and `ambiguity_reason`. The labels are `sarcastic`, `non-sarcastic`, and `ambiguous`. The ambiguity reason is recorded for replies labeled `ambiguous` and left empty otherwise.
 
-The expanded dataset is currently unlabeled; no final sarcasm label distribution is reported at this stage.
+The annotation interface uses **Potato**, and annotation records are backed up to a private Hugging Face dataset repository before export and conversion to CSV. The individual files preserve each annotator's judgments for agreement analysis.
+
+The next steps are to:
+
+1. Calculate pairwise Cohen's kappa and overall Fleiss' kappa across the five annotators.
+2. Examine disagreements and ambiguous examples.
+3. Review examples flagged for unclear or unnatural language mixing.
+4. Establish final ground-truth labels for model development and evaluation.
+
+The original [`Dataset/unlabeled_data.csv`](Dataset/unlabeled_data.csv) remains unlabeled; final consensus labels have not yet been established.
+
+For full details, see [`Dataset/labeled_data/README.md`](Dataset/labeled_data/README.md).
 
 ## Dataset Documentation
 
@@ -131,6 +142,8 @@ Detailed dataset documentation is available in the [`Dataset`](Dataset/) directo
 
 - [`pilot_data.csv`](Dataset/pilot_data.csv) — initial 50-item pilot dataset
 - [`unlabeled_data.csv`](Dataset/unlabeled_data.csv) — expanded 800-item unlabeled dataset
+- [`labeled_data/`](Dataset/labeled_data/) — five annotator CSV files (800 instances each)
+- [`labeled_data/README.md`](Dataset/labeled_data/README.md) — annotation file structure, labels, and ambiguity reasons
 - [`README.md`](Dataset/README.md) — dataset documentation and expansion methodology
 - [`Data_Collection_Criteria.md`](Dataset/Data_Collection_Criteria.md) — inclusion and exclusion criteria
 - [`LICENSE.md`](Dataset/LICENSE.md) — dataset licensing information
@@ -141,6 +154,7 @@ The expanded dataset includes both collected and synthetically adapted examples.
 
 Annotation materials are available in the [`Annotation`](Annotation/) directory:
 
+- [`README.md`](Annotation/README.md) — annotation overview and file locations
 - [`Annotation_Guidelines.md`](Annotation/Guidelines/Annotation_Guidelines.md) — complete annotation guidelines
 - [`config.yaml`](Annotation/Interface/config.yaml) — Potato annotation configuration
 - [`Dockerfile`](Annotation/Interface/Dockerfile) — deployment configuration
@@ -158,7 +172,7 @@ Project proposal materials are available in the [`Proposal`](Proposal/) director
 
 The overall project workflow is:
 
-**Data Collection → Annotation Guidelines → Pilot Dataset → Annotation Interface → Internal Pilot → Dataset Expansion (800 Examples) → Independent Human Annotation → Inter-Annotator Agreement → Disagreement Resolution → Ground-Truth Labels → Modeling and Evaluation**
+**Data Collection → Annotation Guidelines → Pilot Dataset → Annotation Interface → Internal Pilot → Dataset Expansion (800 Examples) → Independent Human Annotation (5 Annotators) → Inter-Annotator Agreement → Disagreement Resolution → Ground-Truth Labels → Modeling and Evaluation**
 
 ## Planned Modeling
 
@@ -194,6 +208,13 @@ Detecting-Sarcasm-in-Code-Switched-Turkish-English-Fan-Discourse/
 ├── Dataset/
 │   ├── pilot_data.csv
 │   ├── unlabeled_data.csv
+│   ├── labeled_data/
+│   │   ├── labeled_data_annotator1.csv
+│   │   ├── labeled_data_annotator2.csv
+│   │   ├── labeled_data_annotator3.csv
+│   │   ├── labeled_data_annotator4.csv
+│   │   ├── labeled_data_annotator5.csv
+│   │   └── README.md
 │   ├── Data_Collection_Criteria.md
 │   ├── LICENSE.md
 │   └── README.md
@@ -227,7 +248,9 @@ Detecting-Sarcasm-in-Code-Switched-Turkish-English-Fan-Discourse/
 - [x] Dataset documentation and licensing prepared
 - [x] Dataset expanded to 800 examples
 - [x] Expanded unlabeled dataset uploaded to GitHub
-- [ ] Independent human annotation of the expanded dataset
+- [x] Independent human annotation of the expanded dataset (five annotators)
+- [x] Five annotation CSV files organized in `Dataset/labeled_data/`
+- [x] Annotation records backed up to Hugging Face and exported to CSV
 - [ ] Inter-annotator agreement analysis
 - [ ] Disagreement resolution and ground-truth labels
 
