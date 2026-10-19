@@ -1,27 +1,46 @@
 # Turkish–English Code-Switched Sarcasm Dataset
 
-This folder contains the pilot and expanded datasets for the project:
+This folder contains the pilot, expanded, and labeled datasets for the project:
 
 **Detecting Sarcasm in Code-Switched Turkish–English Fan Discourse**
 
 The project investigates sarcasm detection in Turkish–English code-switched online conversations. Each dataset instance consists of a parent comment providing conversational context and a corresponding reply that serves as the target for sarcasm annotation.
 
-The dataset currently contains **800 unlabeled parent–reply pairs**, including the initial 50-example pilot dataset. The expanded dataset combines collected social-media comments with synthetically adapted Turkish–English code-switched replies.
+The dataset contains **800 parent–reply pairs**, including the initial 50-example pilot dataset. The expanded dataset combines collected social-media comments with synthetically adapted Turkish–English code-switched replies.
 
-Sarcasm labels have not yet been assigned. The dataset will be annotated by human annotators.
+The dataset includes an unlabeled version and five separately maintained human annotation files.
 
 ## Dataset Files
 
-| File | Description | Instances |
+| File / Folder | Description | Instances |
 |---|---|---|
 | `pilot_data.csv` | Initial pilot dataset for testing the annotation process | 50 |
-| `unlabeled_data.csv` | Expanded dataset prepared for human sarcasm annotation | 800 |
+| `unlabeled_data.csv` | Expanded dataset prepared for sarcasm annotation | 800 |
+| `labeled_data/` | Folder containing five annotator CSV files and a README describing the annotation process and labels | 800 per annotator |
 
-The 800-example dataset is the primary dataset for the annotation phase. The pilot examples are included in the expanded dataset and should not be counted as additional independent instances.
+The 800-example dataset is the primary dataset for the annotation task. The pilot examples are included in the expanded dataset and should not be counted as additional independent instances.
+
+### Labeled Data
+
+The [`labeled_data/`](labeled_data/) folder contains five CSV files:
+
+- `labeled_data_annotator1.csv`
+- `labeled_data_annotator2.csv`
+- `labeled_data_annotator3.csv`
+- `labeled_data_annotator4.csv`
+- `labeled_data_annotator5.csv`
+
+Each file contains the same 800 parent–reply pairs, together with the corresponding annotator's sarcasm classifications and ambiguity reasons.
+
+The annotation workflow uses Potato, a web-based text annotation platform. Annotation responses are backed up to a private Hugging Face dataset repository and exported into CSV format.
+
+The files are maintained separately to preserve individual annotation judgments and support inter-annotator agreement analysis.
+
+For additional details about the labeled dataset, see [`labeled_data/README.md`](labeled_data/README.md).
 
 ## Dataset Format
 
-Both CSV files follow the same structure.
+The pilot and expanded unlabeled CSV files follow the same six-column structure.
 
 | Column | Description |
 |---|---|
@@ -34,6 +53,15 @@ Both CSV files follow the same structure.
 
 Each row represents one parent–reply pair. The reply is the target of the sarcasm classification task, while the parent comment provides context for interpretation.
 
+The labeled CSV files preserve these six columns and include two additional annotation columns:
+
+| Column | Description |
+|---|---|
+| `label` | Sarcasm classification: `sarcastic`, `non-sarcastic`, or `ambiguous` |
+| `ambiguity_reason` | Main reason for uncertainty when an instance is classified as ambiguous |
+
+The `ambiguity_reason` field remains empty for sarcastic and non-sarcastic instances.
+
 ## Dataset Preview
 
 | ID | Platform | Parent Comment | Reply | Timestamp | Language Mix |
@@ -43,7 +71,7 @@ Each row represents one parent–reply pair. The reply is the target of the sarc
 | rd_0005 | Reddit | What sort of genres are you into? | Merhabalar! I love spooky stuff—I’d love a good crime thriller, horror or fantasy. Teşekkürler! | 2 years ago | Mixed |
 | yt_0001 | YouTube | What a movie... 👋 | I cried & cried & cried 😭😭😭 Çok güzel💙 | 7 years ago | Mixed |
 
-The complete datasets are available in [`pilot_data.csv`](pilot_data.csv) and [`unlabeled_data.csv`](unlabeled_data.csv).
+The complete unlabeled datasets are available in [`pilot_data.csv`](pilot_data.csv) and [`unlabeled_data.csv`](unlabeled_data.csv).
 
 ## Data Sources
 
@@ -79,7 +107,7 @@ Because some replies were modified, the expanded dataset should be considered **
 
 The synthetic adaptations preserve the general conversational context but are not presented as verbatim original user posts.
 
-**No sarcasm labels were assigned during data collection or expansion.** Sarcasm judgments will be obtained through human annotation.
+**No sarcasm labels were assigned during data collection or expansion.** Sarcasm labels are maintained separately in the annotation files.
 
 ## Inclusion Criteria
 
@@ -103,9 +131,9 @@ Detailed criteria are available in:
 
 ## Annotation Task
 
-Human annotators will examine both the **parent comment** and the **target reply** to determine whether the reply expresses sarcasm.
+The annotation task involves five independent human annotators examining both the **parent comment** and the **target reply** to determine whether the reply expresses sarcasm.
 
-Each instance will receive one of three labels:
+Each instance is assigned one of three labels:
 
 | Label | Category | Description |
 |---|---|---|
@@ -113,21 +141,41 @@ Each instance will receive one of three labels:
 | 0 | Non-sarcastic | The reply does not express sarcasm |
 | U | Ambiguous / Uncertain | The intended meaning cannot be determined confidently |
 
-For examples labeled **Ambiguous / Uncertain**, annotators will identify the primary reason for uncertainty:
+For examples labeled **Ambiguous / Uncertain**, annotators identify the primary reason for uncertainty:
 
 - Insufficient conversational context
-- Drama or character context needed
-- Language or expression unclear
+- Drama/character context needed
+- Language/expression unclear
 - Tone genuinely ambiguous
 - Other
-
-Annotators may also flag unnatural language mixing or unclear wording for subsequent quality review.
 
 The annotation task focuses on interpreting the reply in relation to its parent comment. The presence of Turkish words, negative sentiment, or strong emotional expressions alone does not establish sarcasm.
 
 Detailed annotation instructions are available in:
 
 [`Annotation_Guidelines.md`](../Annotation/Guidelines/Annotation_Guidelines.md)
+
+## Annotation Procedure and Data Export
+
+The annotation interface is implemented using **Potato**, a web-based annotation platform.
+
+Five human annotators independently evaluate the same 800 parent–reply pairs using the project's annotation guidelines.
+
+For each instance, annotators:
+
+1. Read the parent comment and reply.
+2. Interpret the intended meaning of the reply in its conversational context.
+3. Select one of the three primary sarcasm labels.
+4. Select one main uncertainty reason when assigning Ambiguous / Uncertain.
+5. Make independent judgments without searching online for additional context or discussing individual examples with other annotators.
+
+Annotation responses are backed up to a private Hugging Face dataset repository.
+
+The annotation records are exported and converted into CSV format, preserving the original dataset instances, sarcasm labels, and ambiguity reasons.
+
+Each annotator's responses are stored in a separate CSV file in the [`labeled_data/`](labeled_data/) folder.
+
+This structure supports individual annotation analysis and subsequent inter-annotator agreement evaluation.
 
 ## Estimated Annotation Time
 
@@ -145,15 +193,18 @@ Annotators are instructed to use only the provided conversational context and no
 | Expanded dataset | 800 parent–reply pairs |
 | Reddit examples in expanded dataset | 772 (96.5%) |
 | YouTube examples in expanded dataset | 28 (3.5%) |
+| Number of annotators | 5 |
+| Labeled dataset files | 5 CSV files |
+| Instances per annotator | 800 |
 | Unit of annotation | Parent comment + reply pair |
 | Target text | Reply |
 | Language setting | Turkish–English code-switched discourse |
-| Sarcasm labels | Not yet assigned |
-| Annotation method | Human annotation |
+| Sarcasm labels | Sarcastic, Non-sarcastic, Ambiguous / Uncertain |
+| Annotation method | Human annotation using Potato |
 
 The expanded dataset includes both naturally collected and synthetically adapted material.
 
-The source distribution is uneven, with Reddit representing the majority of the expanded dataset. This imbalance should be considered when interpreting future experimental results.
+The source distribution is uneven, with Reddit representing the majority of the expanded dataset. This imbalance should be considered when interpreting experimental results.
 
 ## Sampling
 
@@ -180,11 +231,26 @@ The following limitations remain relevant:
 
 These characteristics should be considered when interpreting annotation results and evaluating machine-learning models.
 
+## Inter-Annotator Agreement
+
+The five annotation files support evaluation of consistency across annotators.
+
+The agreement analysis will include:
+
+- **Cohen's Kappa:** Measures agreement between pairs of annotators while accounting for chance agreement.
+- **Fleiss' Kappa:** Measures agreement across all five annotators for the three sarcasm categories.
+
+The `id` column is used to align corresponding instances across the five annotation files.
+
+The `ambiguity_reason` column can also support additional analysis of the factors contributing to uncertainty in Turkish–English code-switched sarcasm detection.
+
 ## Missing Data
 
 The dataset is structured to retain a parent comment, reply, platform, timestamp, language-mixing category, and unique identifier for each instance.
 
-Sarcasm labels are intentionally absent from the unlabeled dataset and will be added after human annotation.
+Sarcasm labels are intentionally absent from `unlabeled_data.csv` and are stored separately in the annotation CSV files.
+
+The `ambiguity_reason` field is left empty when an instance is classified as sarcastic or non-sarcastic.
 
 ## Privacy
 
@@ -192,13 +258,17 @@ The dataset does not include usernames as a dedicated metadata field.
 
 Unnecessary personal identifiers should be excluded where possible. Original text, quotations, and links may nevertheless contain identifying information and should be reviewed before public redistribution.
 
+Annotation backups are maintained in a private Hugging Face dataset repository.
+
 ## Files
 
 - [`pilot_data.csv`](pilot_data.csv) — initial 50-example pilot dataset
 - [`unlabeled_data.csv`](unlabeled_data.csv) — expanded 800-example unlabeled dataset
+- [`labeled_data/`](labeled_data/) — folder containing five annotation CSV files
+- [`labeled_data/README.md`](labeled_data/README.md) — documentation of the labeled dataset, annotation categories, and agreement analysis
 - [`Data_Collection_Criteria.md`](Data_Collection_Criteria.md) — data inclusion and exclusion criteria
 - [`LICENSE.md`](LICENSE.md) — dataset licensing and redistribution information
-- `README.md` — dataset documentation
+- `README.md` — main dataset documentation
 
 ## License
 
@@ -224,8 +294,10 @@ For complete licensing and data-release information, see:
 - Pilot dataset collected: **50 examples**
 - Expanded unlabeled dataset prepared: **800 examples**
 - Dataset uploaded to GitHub
-- Human sarcasm annotation: **Pending**
+- Human sarcasm annotation: **Completed — five annotators**
+- Labeled datasets: **Five CSV files, 800 instances each**
+- Annotation records backed up to Hugging Face and converted into CSV format
 - Inter-annotator agreement evaluation: **Planned**
 - Model training and evaluation: **Planned**
 
-The next stage of the project is human annotation of the expanded dataset, followed by annotation agreement analysis and the development of sarcasm detection models.
+The next stage of the project is to evaluate inter-annotator agreement using Cohen's kappa and Fleiss' kappa, followed by the development and evaluation of sarcasm detection models.
