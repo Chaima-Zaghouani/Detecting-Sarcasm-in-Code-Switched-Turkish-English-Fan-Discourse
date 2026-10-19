@@ -65,6 +65,12 @@ The annotation guidelines instruct each annotator to:
 
 The annotation interface is implemented using **Potato**, a web-based text annotation tool.
 
+## Annotation Data Collection and Export
+
+The annotation process uses Potato, a web-based annotation platform. Annotation responses are stored in a private Hugging Face dataset repository.
+
+The annotation records are subsequently exported and converted into CSV format, preserving the original dataset instances, sarcasm labels, and ambiguity reasons. Separate CSV files are maintained for each annotator to support individual annotation analysis and inter-annotator agreement evaluation.
+
 ## Inter-Annotator Agreement
 
 The five annotation files are intended for evaluating consistency across annotators.
